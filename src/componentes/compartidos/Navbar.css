@@ -5,6 +5,7 @@
 
 nav {
     height: 65px;
+    position: sticky;
 }
 
 .display-on-small-devices {
@@ -31,7 +32,7 @@ nav {
 
 @media only screen and (max-width: 495px) {
     .navbar-buttons-container {
-        width: auto;
+        margin: initial;
     }
 }
 
