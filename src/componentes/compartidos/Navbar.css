@@ -18,6 +18,10 @@ nav {
     justify-content: space-between;
 }
 
+.avatar button{
+    margin-left: 10px;
+}
+
 @media only screen and (max-width: 992px) {
     nav {
         height: auto;
