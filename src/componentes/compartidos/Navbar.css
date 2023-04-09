@@ -22,11 +22,10 @@ nav {
     margin-left: 10px;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
     nav {
         height: auto;
     }
-
     .navbar-buttons-container {
         padding-top: 10px;
         padding-bottom: 9px;
