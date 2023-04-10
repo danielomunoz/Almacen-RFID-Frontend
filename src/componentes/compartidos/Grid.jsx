@@ -1,13 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Grid.css'
 
 import CartaObjeto from './CartaObjeto';
 import DetalleObjetoModal from './DetalleObjetoModal';
 
 
-function Grid() {
+function Grid({objetos}) {
 
-  const [objetos, setObjetos] = useState(['', '', '', '', '', '', '', '', '']);
+  const [indiceObjetoPulsado, setIndiceObjetoPulsado] = useState(0);
   
   return (
     <>
@@ -15,12 +15,19 @@ function Grid() {
         <div className="container">
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
             {
-              objetos.map((objeto, indice) => <CartaObjeto key={objeto + indice} />)
+              objetos.map((objeto, indice) => <CartaObjeto key={objeto + indice}
+                                                           objeto={objeto}
+                                                           indice={indice}
+                                                           objetoPulsado={setIndiceObjetoPulsado} />)
             }
           </div>
         </div>
       </div>
-      <DetalleObjetoModal />
+      {
+        (objetos.length != 0)
+          ? <DetalleObjetoModal objeto={objetos[indiceObjetoPulsado]} />
+          : null
+      }
     </>
   )
 }

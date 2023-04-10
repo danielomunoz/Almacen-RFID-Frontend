@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './DetalleObjetoModal.css'
 
 
-function DetalleObjetoModal() {
+function DetalleObjetoModal({objeto}) {
   
   return (
     <div className="modal fade" id="verObjetoModal" tabIndex="-1" aria-labelledby="verObjetoModalLabel" aria-hidden="true">
@@ -14,57 +14,46 @@ function DetalleObjetoModal() {
             <div className="modal-body">
                 <div className='avatar mb-3'>
                     <img src="..." alt="Mi imagen" className="img-thumbnail" />
-                    <button type="button" className="btn btn-outline-warning">Cambiar imagen</button>
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Nombre</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.nombre} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Familia</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.familia} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Categoría</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.categoria} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Subcategoría</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.subcategoria} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Número de serie</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.numero_serie} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Estado en almacén</label>
-                    <select className="form-select" aria-label="Default select example">
-                        <option value="0">Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.estado_en_almacen} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Código RFID del Propietario del objeto</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.propietario} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Localización</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.localizacion} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Código RFID</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.codigo_rfid} disabled />
                 </div>
                 <div className='mb-3'>
-                    <label htmlFor="exampleFormControlInput1" className="form-label">Estado del nuevo objeto</label>
-                    <select className="form-select" aria-label="Default select example">
-                        <option value="0">Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                    <label htmlFor="exampleFormControlInput1" className="form-label">Estado del objeto</label>
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.estado_objeto} disabled />
                 </div>
             </div>
             <div className="modal-footer">
