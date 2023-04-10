@@ -9,9 +9,9 @@ function App() {
 
   const [estoyAutenticado, setEstoyAutenticado] = useState(true);
   const location = useLocation();
-  const query = useLocation().search;
-  console.log(location.pathname);
-  console.log(query);
+  // const query = useLocation().search;
+  // console.log(location.pathname);
+  // console.log(query);
   
   return (
     <>
@@ -19,11 +19,10 @@ function App() {
         estoyAutenticado
           ?
             <Routes>
-              <Route path="/" element={<PrincipalPagina autenticado={setEstoyAutenticado} />} />
-              <Route path="/rastreo" element={<PrincipalPagina autenticado={setEstoyAutenticado} />} />
-              <Route path="/objetos" element={<PrincipalPagina autenticado={setEstoyAutenticado} />} />
-              <Route path="/mis-objetos" element={<PrincipalPagina autenticado={setEstoyAutenticado} />} />
-              <Route path="*" element={<Navigate to="/" />} />
+              <Route path="/objetos" element={<PrincipalPagina path={location.pathname} autenticado={setEstoyAutenticado} />} />
+              <Route path="/rastreo" element={<PrincipalPagina path={location.pathname} autenticado={setEstoyAutenticado} />} />
+              <Route path="/mis-objetos" element={<PrincipalPagina path={location.pathname} autenticado={setEstoyAutenticado} />} />
+              <Route path="*" element={<Navigate to="/objetos" />} />
             </Routes>
           :
             <Routes>
