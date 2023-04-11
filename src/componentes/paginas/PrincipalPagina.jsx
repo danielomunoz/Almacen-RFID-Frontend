@@ -15,11 +15,12 @@ function PrincipalPagina({path}) {
   const [titulo, setTitulo] = useState('Objetos');
   const [objetos, setObjetos] = useState([]);
   const [acciones, setAcciones] = useState([]);
+  const [filtros, setFiltros] = useState('');
 
   useEffect(() => {
     if (path === '/objetos') {
       setTitulo('Objetos');
-      axios.get("http://127.0.0.1:8000/api/objeto")
+      axios.get("http://127.0.0.1:8000/api/objeto" + filtros)
       .then(res => {
         setObjetos(res.data.payload);
       })
@@ -30,7 +31,7 @@ function PrincipalPagina({path}) {
     }
     if (path === '/rastreo') {
       setTitulo('Rastreo');
-      axios.get("http://127.0.0.1:8000/api/accion")
+      axios.get("http://127.0.0.1:8000/api/accion" + filtros)
       .then(res => {
         setAcciones(res.data.payload);
       })
@@ -41,7 +42,7 @@ function PrincipalPagina({path}) {
     }
     if (path === '/mis-objetos') {
       setTitulo('Mis objetos');
-      axios.get("http://127.0.0.1:8000/api/misObjetos/a18e32e6-db09-4324-8189-3781d27a1b8c/0")
+      axios.get("http://127.0.0.1:8000/api/misObjetos/a18e32e6-db09-4324-8189-3781d27a1b8c" + filtros)
       .then(res => {
         setObjetos(res.data.payload);
       })
@@ -50,13 +51,13 @@ function PrincipalPagina({path}) {
         setObjetos([]);
       });
     }
-  }, []);
+  }, [filtros]);
   
   return (
     <>
       <div className='main-container'>
         <div className='main-page-main-container'>
-          <Navbar activeLink={path}/>
+          <Navbar activeLink={path} actualizaFiltros={setFiltros} />
           <Titulo titulo={titulo} />
           {
             path === '/rastreo'

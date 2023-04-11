@@ -3,11 +3,12 @@ import './Navbar.css'
 
 import MiPerfilModal from './MiPerfilModal'
 import FiltrosGridModal from './FiltrosGridModal'
+import FiltrosMisObjetosGridModal from './FiltrosMisObjetosGridModal'
 import RegistrarObjetoModal from './RegistrarObjetoModal'
 import LogoutModal from './LogoutModal'
 
 
-function Navbar({activeLink}) {
+function Navbar({activeLink, actualizaFiltros}) {
   
   return (
     <>
@@ -53,7 +54,8 @@ function Navbar({activeLink}) {
             </div>
         </div>
       </nav>
-      <FiltrosGridModal />
+      {(activeLink === '/mis-objetos') && <FiltrosMisObjetosGridModal actualizaFiltros={actualizaFiltros} />}
+      {(activeLink === '/objetos') && <FiltrosGridModal actualizaFiltros={actualizaFiltros} />}
       <RegistrarObjetoModal />
       <LogoutModal />
       <MiPerfilModal />
