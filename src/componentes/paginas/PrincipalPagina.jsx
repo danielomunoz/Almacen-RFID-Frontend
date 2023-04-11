@@ -39,7 +39,17 @@ function PrincipalPagina({path}) {
         setAcciones([]);
       });
     }
-    if (path === '/mis-objetos') setTitulo('Mis objetos');
+    if (path === '/mis-objetos') {
+      setTitulo('Mis objetos');
+      axios.get("http://127.0.0.1:8000/api/misObjetos/a18e32e6-db09-4324-8189-3781d27a1b8c/0")
+      .then(res => {
+        setObjetos(res.data.payload);
+      })
+      .catch((err) => {
+        console.log(err);
+        setObjetos([]);
+      });
+    }
   }, []);
   
   return (

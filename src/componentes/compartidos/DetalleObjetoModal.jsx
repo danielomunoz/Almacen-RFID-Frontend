@@ -2,6 +2,15 @@ import { useState } from 'react'
 import './DetalleObjetoModal.css'
 
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function formateaEstadoObjeto(estado_objeto) {
+    if (estado_objeto == 'en deposito') return 'En depósito';
+    return capitalizeFirstLetter(estado_objeto);
+}
+
 function DetalleObjetoModal({objeto}) {
   
   return (
@@ -37,7 +46,7 @@ function DetalleObjetoModal({objeto}) {
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Estado en almacén</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.estado_en_almacen} disabled />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={formateaEstadoObjeto(objeto.estado_en_almacen)} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Código RFID del Propietario del objeto</label>
@@ -53,7 +62,7 @@ function DetalleObjetoModal({objeto}) {
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Estado del objeto</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.estado_objeto} disabled />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={capitalizeFirstLetter(objeto.estado_objeto)} disabled />
                 </div>
             </div>
             <div className="modal-footer">
