@@ -1,8 +1,17 @@
 import { useState } from 'react'
 import './DetallePersonaModal.css'
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
-function DetallePersonaModal() {
+function parseStringToDate(string) {
+    let mydate = new Date(string);
+    return `${mydate.toLocaleDateString()}`;
+}
+
+
+function DetallePersonaModal({persona}) {
   
   return (
     <div className="modal fade" id="verPersonaModal" tabIndex="-1" aria-labelledby="verPersonaModalLabel" aria-hidden="true">
@@ -18,35 +27,35 @@ function DetallePersonaModal() {
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Nombre</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={persona.nombre} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={persona.email} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Móvil</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={persona.movil} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">DNI</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={persona.dni} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Código RFID</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={persona.codigo_rfid} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Fecha de registro</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={parseStringToDate(persona.fecha_registro)} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Rol</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={capitalizeFirstLetter(persona.rol)} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Estado</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={capitalizeFirstLetter(persona.estado)} disabled />
                 </div>
             </div>
             <div className="modal-footer">

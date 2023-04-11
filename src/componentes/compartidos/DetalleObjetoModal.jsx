@@ -41,7 +41,7 @@ function DetalleObjetoModal({objeto}) {
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Código RFID del Propietario del objeto</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.propietario} disabled />
+                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder={objeto.propietario.codigo_rfid} disabled />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Localización</label>

@@ -17,16 +17,29 @@ function PrincipalPagina({path}) {
   const [acciones, setAcciones] = useState([]);
 
   useEffect(() => {
-    if (path === '/objetos') setTitulo('Objetos');
-    if (path === '/rastreo') setTitulo('Rastreo');
-    if (path === '/mis-objetos') setTitulo('Mis objetos');
-
-    axios.get("http://127.0.0.1:8000/api/objeto")
+    if (path === '/objetos') {
+      setTitulo('Objetos');
+      axios.get("http://127.0.0.1:8000/api/objeto")
       .then(res => {
         setObjetos(res.data.payload);
-        // if (res.data.ok) console.log(res.data.payload);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setObjetos([]);
+      });
+    }
+    if (path === '/rastreo') {
+      setTitulo('Rastreo');
+      axios.get("http://127.0.0.1:8000/api/accion")
+      .then(res => {
+        setAcciones(res.data.payload);
+      })
+      .catch((err) => {
+        console.log(err);
+        setAcciones([]);
+      });
+    }
+    if (path === '/mis-objetos') setTitulo('Mis objetos');
   }, []);
   
   return (
@@ -38,7 +51,7 @@ function PrincipalPagina({path}) {
           {
             path === '/rastreo'
               ?
-                <Rastreo />
+                <Rastreo acciones={acciones} />
               :
                 <Grid objetos={objetos} />
           }

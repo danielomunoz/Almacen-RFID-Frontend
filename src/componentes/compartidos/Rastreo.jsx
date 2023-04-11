@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Rastreo.css'
 
 import RastreoFila from './RastreoFila';
@@ -6,9 +6,9 @@ import DetalleObjetoModal from './DetalleObjetoModal';
 import DetallePersonaModal from './DetallePersonaModal';
 
 
-function Rastreo() {
+function Rastreo({acciones}) {
 
-  const [filas, setFilas] = useState(['', '', '', '']);
+    const [indiceAccionPulsada, setIndiceAccionPulsada] = useState(0);
   
   return (
     <>
@@ -17,18 +17,30 @@ function Rastreo() {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Objeto</th>
+                        <th scope="col">Persona</th>
+                        <th scope="col">Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
-                    { filas.map((fila, indice) => <RastreoFila key={fila + indice} />) }
+                    { acciones.map((accion, indice) => <RastreoFila key={accion + indice}
+                                                                    accion={accion}
+                                                                    indice={indice}
+                                                                    accionPulsada={setIndiceAccionPulsada} />) }
                 </tbody>
             </table>
         </div>
-        <DetalleObjetoModal />
-        <DetallePersonaModal />
+        {
+            (acciones.length != 0)
+            ? <DetalleObjetoModal objeto={acciones[indiceAccionPulsada].objeto} />
+            : null
+        }
+        {
+            (acciones.length != 0)
+            ? <DetallePersonaModal persona={acciones[indiceAccionPulsada].persona} />
+            : null
+        }
     </>
   )
 }
