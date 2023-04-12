@@ -6,6 +6,7 @@ function FiltrosObjetosGridModal({actualizaFiltros, activeLink}) {
 
     const formRef = useRef(null);
 
+    // Campos para el filtrado de objetos y mis objetos
     const soy_propietario = useRef(null);
     const soy_responsable = useRef(null);
     const nombre = useRef(null);
@@ -23,26 +24,41 @@ function FiltrosObjetosGridModal({actualizaFiltros, activeLink}) {
     const codigo_rfid = useRef(null);
     const estado_objeto = useRef(null);
 
+    // Campos para el filtrado de acciones (rastreo)
+    const tipo = useRef(null);
+    const nombre_objeto = useRef(null);
+    const nombre_persona = useRef(null);
+    const fecha_desde = useRef(null);
+    const fecha_hasta = useRef(null);
+
     const aplicarFiltrosPulsado = () => {
-        let filtros = '?';
+        let filtros = '';
+
         (activeLink === '/mis-objetos' && soy_propietario.current.checked === true) ? filtros += `&soy_propietario=true` : null;
         (activeLink === '/mis-objetos' && soy_responsable.current.checked === true) ? filtros += `&soy_responsable=true` : null;
-        (nombre.current.value !== '') ? filtros += `&nombre=${nombre.current.value}` : null;
-        (descripcion.current.value !== '') ? filtros += `&descripcion=${descripcion.current.value}` : null;
-        (familia.current.value !== '') ? filtros += `&familia=${familia.current.value}` : null;
-        (categoria.current.value !== '') ? filtros += `&categoria=${categoria.current.value}` : null;
-        (subcategoria.current.value !== '') ? filtros += `&subcategoria=${subcategoria.current.value}` : null;
-        (numero_serie.current.value !== '') ? filtros += `&numero_serie=${numero_serie.current.value}` : null;
-        (estado_en_almacen.current.value !== '0') ? filtros += `&estado_en_almacen=${estado_en_almacen.current.value}` : null;
-        (fecha_registrado_desde.current.value !== '') ? filtros += `&fecha_registrado_desde=${fecha_registrado_desde.current.value}` : null;
-        (fecha_registrado_hasta.current.value !== '') ? filtros += `&fecha_registrado_hasta=${fecha_registrado_hasta.current.value}` : null;
-        (localizacion.current.value !== '') ? filtros += `&localizacion=${localizacion.current.value}` : null;
-        (fecha_ultima_accion_desde.current.value !== '') ? filtros += `&fecha_ultima_accion_desde=${fecha_ultima_accion_desde.current.value}` : null;
-        (fecha_ultima_accion_hasta.current.value !== '') ? filtros += `&fecha_ultima_accion_hasta=${fecha_ultima_accion_hasta.current.value}` : null;
-        (codigo_rfid.current.value !== '') ? filtros += `&codigo_rfid=${codigo_rfid.current.value}` : null;
-        (estado_objeto.current.value !== '0') ? filtros += `&estado_objeto=${estado_objeto.current.value}` : null;
 
-        actualizaFiltros(filtros);
+        (activeLink !== '/rastreo' && nombre.current.value !== '') ? filtros += `&nombre=${nombre.current.value}` : null;
+        (activeLink !== '/rastreo' && descripcion.current.value !== '') ? filtros += `&descripcion=${descripcion.current.value}` : null;
+        (activeLink !== '/rastreo' && familia.current.value !== '') ? filtros += `&familia=${familia.current.value}` : null;
+        (activeLink !== '/rastreo' && categoria.current.value !== '') ? filtros += `&categoria=${categoria.current.value}` : null;
+        (activeLink !== '/rastreo' && subcategoria.current.value !== '') ? filtros += `&subcategoria=${subcategoria.current.value}` : null;
+        (activeLink !== '/rastreo' && numero_serie.current.value !== '') ? filtros += `&numero_serie=${numero_serie.current.value}` : null;
+        (activeLink !== '/rastreo' && estado_en_almacen.current.value !== '0') ? filtros += `&estado_en_almacen=${estado_en_almacen.current.value}` : null;
+        (activeLink !== '/rastreo' && fecha_registrado_desde.current.value !== '') ? filtros += `&fecha_registrado_desde=${fecha_registrado_desde.current.value}` : null;
+        (activeLink !== '/rastreo' && fecha_registrado_hasta.current.value !== '') ? filtros += `&fecha_registrado_hasta=${fecha_registrado_hasta.current.value}` : null;
+        (activeLink !== '/rastreo' && localizacion.current.value !== '') ? filtros += `&localizacion=${localizacion.current.value}` : null;
+        (activeLink !== '/rastreo' && fecha_ultima_accion_desde.current.value !== '') ? filtros += `&fecha_ultima_accion_desde=${fecha_ultima_accion_desde.current.value}` : null;
+        (activeLink !== '/rastreo' && fecha_ultima_accion_hasta.current.value !== '') ? filtros += `&fecha_ultima_accion_hasta=${fecha_ultima_accion_hasta.current.value}` : null;
+        (activeLink !== '/rastreo' && codigo_rfid.current.value !== '') ? filtros += `&codigo_rfid=${codigo_rfid.current.value}` : null;
+        (activeLink !== '/rastreo' && estado_objeto.current.value !== '0') ? filtros += `&estado_objeto=${estado_objeto.current.value}` : null;
+
+        (activeLink === '/rastreo' && tipo.current.value !== '0') ? filtros += `&tipo=${tipo.current.value}` : null;
+        (activeLink === '/rastreo' && nombre_objeto.current.value !== '') ? filtros += `&nombre_objeto=${nombre_objeto.current.value}` : null;
+        (activeLink === '/rastreo' && nombre_persona.current.value !== '') ? filtros += `&nombre_persona=${nombre_persona.current.value}` : null;
+        (activeLink === '/rastreo' && fecha_desde.current.value !== '') ? filtros += `&fecha_desde=${fecha_desde.current.value}` : null;
+        (activeLink === '/rastreo' && fecha_hasta.current.value !== '') ? filtros += `&fecha_hasta=${fecha_hasta.current.value}` : null;
+
+        actualizaFiltros('?' + filtros.replace(' ', '%20').slice(1));
     }
 
     const borrarFiltros = () => {
@@ -85,72 +101,108 @@ function FiltrosObjetosGridModal({actualizaFiltros, activeLink}) {
                             <hr></hr>
                         </>
                     }
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Nombre</label>
-                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={nombre} />
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Descripción</label>
-                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={descripcion} />
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Familia</label>
-                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={familia} />
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Categoría</label>
-                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={categoria} />
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Subcategoría</label>
-                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={subcategoria} />
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Número de serie</label>
-                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={numero_serie} />
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Estado en almacén</label>
-                        <select className="form-select" aria-label="Default select example" ref={estado_en_almacen} >
-                            <option value="0">Seleccione según el estado en almacén</option>
-                            <option value="en%20deposito">En depósito</option>
-                            <option value="retirado">Retirado</option>
-                        </select>
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Registrado desde (fecha incluída)</label>
-                        <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_registrado_desde} />
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Registrado hasta (fecha incluída)</label>
-                        <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_registrado_hasta} />
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Localización</label>
-                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={localizacion} />
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Código RFID</label>
-                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={codigo_rfid} />
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Última acción desde (fecha incluída)</label>
-                        <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_ultima_accion_desde} />
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Última acción hasta (fecha incluída)</label>
-                        <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_ultima_accion_hasta} />
-                    </div>
-                    <div className='mb-3'>
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Estado del objeto</label>
-                        <select className="form-select" aria-label="Default select example" ref={estado_objeto} >
-                            <option value="0">Seleccione según el estado del objeto</option>
-                            <option value="nuevo">Nuevo</option>
-                            <option value="usado">Usado</option>
-                            <option value="defectuoso">Defectuoso</option>
-                            <option value="baja">Defectuoso</option>
-                        </select>
-                    </div>
+                    {
+                        (activeLink === '/objetos' || activeLink === '/mis-objetos')
+                        &&
+                        <>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Nombre</label>
+                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={nombre} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Descripción</label>
+                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={descripcion} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Familia</label>
+                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={familia} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Categoría</label>
+                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={categoria} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Subcategoría</label>
+                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={subcategoria} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Número de serie</label>
+                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={numero_serie} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Estado en almacén</label>
+                                <select className="form-select" aria-label="Default select example" ref={estado_en_almacen} >
+                                    <option value="0">Seleccione según el estado en almacén</option>
+                                    <option value="en%20deposito">En depósito</option>
+                                    <option value="retirado">Retirado</option>
+                                </select>
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Registrado desde (fecha incluída)</label>
+                                <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_registrado_desde} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Registrado hasta (fecha no incluída)</label>
+                                <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_registrado_hasta} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Localización</label>
+                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={localizacion} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Código RFID</label>
+                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={codigo_rfid} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Última acción desde (fecha incluída)</label>
+                                <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_ultima_accion_desde} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Última acción hasta (fecha no incluída)</label>
+                                <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_ultima_accion_hasta} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Estado del objeto</label>
+                                <select className="form-select" aria-label="Default select example" ref={estado_objeto} >
+                                    <option value="0">Seleccione según el estado del objeto</option>
+                                    <option value="nuevo">Nuevo</option>
+                                    <option value="usado">Usado</option>
+                                    <option value="defectuoso">Defectuoso</option>
+                                    <option value="baja">Defectuoso</option>
+                                </select>
+                            </div>
+                        </>
+                    }
+                    {
+                        (activeLink === '/rastreo')
+                        &&
+                        <>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Tipo</label>
+                                <select className="form-select" aria-label="Default select example" ref={tipo} >
+                                    <option value="0">Seleccione el tipo de acción</option>
+                                    <option value="ingreso">Ingreso</option>
+                                    <option value="salida">Salida</option>
+                                </select>
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Nombre del objeto</label>
+                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={nombre_objeto} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Nombre de la persona</label>
+                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={nombre_persona} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Fecha desde (fecha incluída)</label>
+                                <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_desde} />
+                            </div>
+                            <div className='mb-3'>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Fecha hasta (fecha no incluída)</label>
+                                <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_hasta} />
+                            </div>
+                        </>
+                    }
                 </form>
             </div>
             <div className="modal-footer">

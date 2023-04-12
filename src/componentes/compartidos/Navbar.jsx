@@ -53,8 +53,7 @@ function Navbar({activeLink, actualizaFiltros}) {
             </div>
         </div>
       </nav>
-      {(activeLink === '/mis-objetos' || activeLink === '/objetos') && <FiltrosObjetosGridModal actualizaFiltros={actualizaFiltros}
-                                                                                                activeLink={activeLink} />}
+      {<FiltrosObjetosGridModal actualizaFiltros={actualizaFiltros} activeLink={activeLink} />}
       <RegistrarObjetoModal />
       <LogoutModal />
       <MiPerfilModal />
