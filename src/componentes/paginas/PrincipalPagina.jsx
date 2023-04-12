@@ -16,12 +16,15 @@ function PrincipalPagina({path}) {
   const [objetos, setObjetos] = useState([]);
   const [acciones, setAcciones] = useState([]);
   const [filtros, setFiltros] = useState('');
+  const [paginaActual, setPaginaActual] = useState(1);
+  const [totalPaginas, setTotalPaginas] = useState(1);
 
   useEffect(() => {
     if (path === '/objetos') {
       setTitulo('Objetos');
-      axios.get("http://127.0.0.1:8000/api/objeto" + filtros)
+      axios.get(`http://127.0.0.1:8000/api/objeto?p=${paginaActual}` + filtros)
       .then(res => {
+        setTotalPaginas(res.data.total_paginas)
         setObjetos(res.data.payload);
       })
       .catch((err) => {
@@ -31,8 +34,9 @@ function PrincipalPagina({path}) {
     }
     if (path === '/rastreo') {
       setTitulo('Rastreo');
-      axios.get("http://127.0.0.1:8000/api/accion" + filtros)
+      axios.get(`http://127.0.0.1:8000/api/accion?p=${paginaActual}` + filtros)
       .then(res => {
+        setTotalPaginas(res.data.total_paginas)
         setAcciones(res.data.payload);
       })
       .catch((err) => {
@@ -42,8 +46,9 @@ function PrincipalPagina({path}) {
     }
     if (path === '/mis-objetos') {
       setTitulo('Mis objetos');
-      axios.get("http://127.0.0.1:8000/api/misObjetos/a18e32e6-db09-4324-8189-3781d27a1b8c" + filtros)
+      axios.get(`http://127.0.0.1:8000/api/misObjetos/a18e32e6-db09-4324-8189-3781d27a1b8c?p=${paginaActual}` + filtros)
       .then(res => {
+        setTotalPaginas(res.data.total_paginas)
         setObjetos(res.data.payload);
       })
       .catch((err) => {
@@ -51,7 +56,7 @@ function PrincipalPagina({path}) {
         setObjetos([]);
       });
     }
-  }, [filtros]);
+  }, [filtros, paginaActual]);
   
   return (
     <>
@@ -68,7 +73,7 @@ function PrincipalPagina({path}) {
           }
         </div>
         <div className='main-page-footer-container'>
-          <Paginacion />
+          <Paginacion paginaActual={paginaActual} totalPaginas={totalPaginas} cambioPaginaActual={setPaginaActual} />
           <Footer />
         </div>
       </div>

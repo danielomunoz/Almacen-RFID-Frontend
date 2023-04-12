@@ -58,7 +58,7 @@ function FiltrosObjetosGridModal({actualizaFiltros, activeLink}) {
         (activeLink === '/rastreo' && fecha_desde.current.value !== '') ? filtros += `&fecha_desde=${fecha_desde.current.value}` : null;
         (activeLink === '/rastreo' && fecha_hasta.current.value !== '') ? filtros += `&fecha_hasta=${fecha_hasta.current.value}` : null;
 
-        actualizaFiltros('?' + filtros.replace(' ', '%20').slice(1));
+        actualizaFiltros(filtros.replace(' ', '%20'));
     }
 
     const borrarFiltros = () => {

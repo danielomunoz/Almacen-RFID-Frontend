@@ -28,5 +28,10 @@
 }
 
 .pagination-form {
-    width: 147px;
+    width: 160px;
+}
+
+.page-item {
+    cursor: pointer;
+    -webkit-user-select: none;
 }
