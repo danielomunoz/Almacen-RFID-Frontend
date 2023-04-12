@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react'
-import './FiltrosMisObjetosGridModal.css'
+import './FiltrosObjetosGridModal.css'
 
 
-function FiltrosMisObjetosGridModal({actualizaFiltros}) {
+function FiltrosObjetosGridModal({actualizaFiltros, activeLink}) {
 
     const formRef = useRef(null);
 
@@ -25,8 +25,8 @@ function FiltrosMisObjetosGridModal({actualizaFiltros}) {
 
     const aplicarFiltrosPulsado = () => {
         let filtros = '?';
-        (soy_propietario.current.checked === true) ? filtros += `&soy_propietario=true` : null;
-        (soy_responsable.current.checked === true) ? filtros += `&soy_responsable=true` : null;
+        (activeLink === '/mis-objetos' && soy_propietario.current.checked === true) ? filtros += `&soy_propietario=true` : null;
+        (activeLink === '/mis-objetos' && soy_responsable.current.checked === true) ? filtros += `&soy_responsable=true` : null;
         (nombre.current.value !== '') ? filtros += `&nombre=${nombre.current.value}` : null;
         (descripcion.current.value !== '') ? filtros += `&descripcion=${descripcion.current.value}` : null;
         (familia.current.value !== '') ? filtros += `&familia=${familia.current.value}` : null;
@@ -66,19 +66,25 @@ function FiltrosMisObjetosGridModal({actualizaFiltros}) {
             </div>
             <div className="modal-body">
                 <form ref={formRef}>
-                    <div className="form-check">
-                        <input className="form-check-input" type="checkbox" value="true" id="flexCheckChecked" defaultChecked onChange={() => compruebaCheckboxes(soy_propietario)} ref={soy_propietario} />
-                        <label className="form-check-label" htmlFor="flexCheckChecked">
-                            Soy propietario
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="checkbox" value="true" id="flexCheckChecked" defaultChecked onChange={() => compruebaCheckboxes(soy_responsable)} ref={soy_responsable} />
-                        <label className="form-check-label" htmlFor="flexCheckChecked">
-                            Soy responsable
-                        </label>
-                    </div>
-                    <hr></hr>
+                    { 
+                        (activeLink === '/mis-objetos')
+                        &&
+                        <>
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" value="true" id="flexCheckChecked" defaultChecked onChange={() => compruebaCheckboxes(soy_propietario)} ref={soy_propietario} />
+                                <label className="form-check-label" htmlFor="flexCheckChecked">
+                                    Soy propietario
+                                </label>
+                            </div>
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" value="true" id="flexCheckChecked" defaultChecked onChange={() => compruebaCheckboxes(soy_responsable)} ref={soy_responsable} />
+                                <label className="form-check-label" htmlFor="flexCheckChecked">
+                                    Soy responsable
+                                </label>
+                            </div>
+                            <hr></hr>
+                        </>
+                    }
                     <div className='mb-3'>
                         <label htmlFor="exampleFormControlInput1" className="form-label">Nombre</label>
                         <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={nombre} />
@@ -158,4 +164,4 @@ function FiltrosMisObjetosGridModal({actualizaFiltros}) {
   )
 }
 
-export default FiltrosMisObjetosGridModal
+export default FiltrosObjetosGridModal

@@ -2,8 +2,7 @@ import { useState } from 'react'
 import './Navbar.css'
 
 import MiPerfilModal from './MiPerfilModal'
-import FiltrosGridModal from './FiltrosGridModal'
-import FiltrosMisObjetosGridModal from './FiltrosMisObjetosGridModal'
+import FiltrosObjetosGridModal from './FiltrosObjetosGridModal'
 import RegistrarObjetoModal from './RegistrarObjetoModal'
 import LogoutModal from './LogoutModal'
 
@@ -54,8 +53,8 @@ function Navbar({activeLink, actualizaFiltros}) {
             </div>
         </div>
       </nav>
-      {(activeLink === '/mis-objetos') && <FiltrosMisObjetosGridModal actualizaFiltros={actualizaFiltros} />}
-      {(activeLink === '/objetos') && <FiltrosGridModal actualizaFiltros={actualizaFiltros} />}
+      {(activeLink === '/mis-objetos' || activeLink === '/objetos') && <FiltrosObjetosGridModal actualizaFiltros={actualizaFiltros}
+                                                                                                activeLink={activeLink} />}
       <RegistrarObjetoModal />
       <LogoutModal />
       <MiPerfilModal />
