@@ -39,7 +39,7 @@ function Paginacion({paginaActual, totalPaginas, cambioPaginaActual}) {
         <li className={(paginaActual > 1 && !deshabilitaFlechas) ? 'page-item' : 'page-item disabled'}>
           <a className="page-link" tabIndex="-1" onClick={() => retrocedePagina(paginaActual)}>&larr;</a>
         </li>
-        <li className="page-item active"><input type="number" className="form-control pagination-form" id="exampleFormControlInput1" placeholder={`Página ${paginaActual} de ${totalPaginas}`} ref={pagina} /></li>
+        <li className="page-item active"><input type="number" autoComplete='off' className="form-control pagination-form" id="exampleFormControlInput1" placeholder={`Página ${paginaActual} de ${totalPaginas}`} ref={pagina} /></li>
         <li className={(paginaActual < totalPaginas && !deshabilitaFlechas) ? 'page-item' : 'page-item disabled'}>
           <a className="page-link" onClick={() => avanzaPagina(paginaActual)}>&rarr;</a>
         </li>

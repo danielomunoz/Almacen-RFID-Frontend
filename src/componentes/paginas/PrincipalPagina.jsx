@@ -18,8 +18,10 @@ function PrincipalPagina({path}) {
   const [filtros, setFiltros] = useState('');
   const [paginaActual, setPaginaActual] = useState(1);
   const [totalPaginas, setTotalPaginas] = useState(1);
+  const [flagObjetoRegistrado, setFlagObjetoRegistrado] = useState(false);
 
   useEffect(() => {
+    if (flagObjetoRegistrado === true) setFlagObjetoRegistrado(false);
     if (path === '/objetos') {
       setTitulo('Objetos');
       axios.get(`http://127.0.0.1:8000/api/objeto?p=${paginaActual}` + filtros)
@@ -56,13 +58,13 @@ function PrincipalPagina({path}) {
         setObjetos([]);
       });
     }
-  }, [filtros, paginaActual]);
+  }, [filtros, paginaActual, flagObjetoRegistrado]);
   
   return (
     <>
       <div className='main-container'>
         <div className='main-page-main-container'>
-          <Navbar activeLink={path} actualizaFiltros={setFiltros} />
+          <Navbar activeLink={path} actualizaFiltros={setFiltros} nuevoObjetoRegistrado={setFlagObjetoRegistrado} />
           <Titulo titulo={titulo} />
           {
             path === '/rastreo'

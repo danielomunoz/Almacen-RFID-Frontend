@@ -7,7 +7,7 @@ import RegistrarObjetoModal from './RegistrarObjetoModal'
 import LogoutModal from './LogoutModal'
 
 
-function Navbar({activeLink, actualizaFiltros}) {
+function Navbar({activeLink, actualizaFiltros, nuevoObjetoRegistrado}) {
   
   return (
     <>
@@ -54,7 +54,7 @@ function Navbar({activeLink, actualizaFiltros}) {
         </div>
       </nav>
       {<FiltrosObjetosGridModal actualizaFiltros={actualizaFiltros} activeLink={activeLink} />}
-      <RegistrarObjetoModal />
+      <RegistrarObjetoModal nuevoObjetoRegistrado={nuevoObjetoRegistrado} />
       <LogoutModal />
       <MiPerfilModal />
     </>
