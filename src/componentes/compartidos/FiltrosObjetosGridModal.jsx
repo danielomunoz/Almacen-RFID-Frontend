@@ -107,27 +107,27 @@ function FiltrosObjetosGridModal({actualizaFiltros, activeLink}) {
                         <>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Nombre</label>
-                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={nombre} />
+                                <input type="text" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={nombre} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Descripción</label>
-                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={descripcion} />
+                                <input type="text" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={descripcion} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Familia</label>
-                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={familia} />
+                                <input type="text" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={familia} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Categoría</label>
-                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={categoria} />
+                                <input type="text" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={categoria} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Subcategoría</label>
-                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={subcategoria} />
+                                <input type="text" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={subcategoria} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Número de serie</label>
-                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={numero_serie} />
+                                <input type="text" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={numero_serie} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Estado en almacén</label>
@@ -139,27 +139,27 @@ function FiltrosObjetosGridModal({actualizaFiltros, activeLink}) {
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Registrado desde (fecha incluída)</label>
-                                <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_registrado_desde} />
+                                <input type="date" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={fecha_registrado_desde} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Registrado hasta (fecha no incluída)</label>
-                                <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_registrado_hasta} />
+                                <input type="date" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={fecha_registrado_hasta} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Localización</label>
-                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={localizacion} />
+                                <input type="text" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={localizacion} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Código RFID</label>
-                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={codigo_rfid} />
+                                <input type="text" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={codigo_rfid} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Última acción desde (fecha incluída)</label>
-                                <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_ultima_accion_desde} />
+                                <input type="date" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={fecha_ultima_accion_desde} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Última acción hasta (fecha no incluída)</label>
-                                <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_ultima_accion_hasta} />
+                                <input type="date" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={fecha_ultima_accion_hasta} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Estado del objeto</label>
@@ -187,19 +187,19 @@ function FiltrosObjetosGridModal({actualizaFiltros, activeLink}) {
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Nombre del objeto</label>
-                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={nombre_objeto} />
+                                <input type="text" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={nombre_objeto} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Nombre de la persona</label>
-                                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={nombre_persona} />
+                                <input type="text" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={nombre_persona} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Fecha desde (fecha incluída)</label>
-                                <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_desde} />
+                                <input type="date" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={fecha_desde} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Fecha hasta (fecha no incluída)</label>
-                                <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required ref={fecha_hasta} />
+                                <input type="date" className="form-control" id="exampleFormControlInput1" autoComplete="off" ref={fecha_hasta} />
                             </div>
                         </>
                     }

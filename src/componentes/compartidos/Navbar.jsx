@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import './Navbar.css'
 
 import MiPerfilModal from './MiPerfilModal'
@@ -7,7 +8,19 @@ import RegistrarObjetoModal from './RegistrarObjetoModal'
 import LogoutModal from './LogoutModal'
 
 
-function Navbar({activeLink, actualizaFiltros, nuevoObjetoRegistrado}) {
+function Navbar({activeLink, actualizaFiltros, nuevoObjetoRegistrado, userId}) {
+
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:8000/api/persona/${userId}`)
+            .then(res => {
+                setUser(res.data.payload);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, [])
   
   return (
     <>
@@ -53,10 +66,10 @@ function Navbar({activeLink, actualizaFiltros, nuevoObjetoRegistrado}) {
             </div>
         </div>
       </nav>
-      {<FiltrosObjetosGridModal actualizaFiltros={actualizaFiltros} activeLink={activeLink} />}
+      <FiltrosObjetosGridModal actualizaFiltros={actualizaFiltros} activeLink={activeLink} />
       <RegistrarObjetoModal nuevoObjetoRegistrado={nuevoObjetoRegistrado} />
       <LogoutModal />
-      <MiPerfilModal />
+      {(Object.keys(user).length !== 0) && <MiPerfilModal user={user} />}
     </>
   )
 }

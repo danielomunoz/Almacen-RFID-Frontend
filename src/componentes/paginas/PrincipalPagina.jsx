@@ -10,7 +10,7 @@ import Rastreo from '../compartidos/Rastreo';
 import Paginacion from '../compartidos/Paginacion';
 
 
-function PrincipalPagina({path}) {
+function PrincipalPagina({path, userId}) {
 
   const [titulo, setTitulo] = useState('Objetos');
   const [objetos, setObjetos] = useState([]);
@@ -48,7 +48,7 @@ function PrincipalPagina({path}) {
     }
     if (path === '/mis-objetos') {
       setTitulo('Mis objetos');
-      axios.get(`http://127.0.0.1:8000/api/misObjetos/a18e32e6-db09-4324-8189-3781d27a1b8c?p=${paginaActual}` + filtros)
+      axios.get(`http://127.0.0.1:8000/api/misObjetos/${userId}?p=${paginaActual}` + filtros)
       .then(res => {
         setTotalPaginas(res.data.total_paginas)
         setObjetos(res.data.payload);
@@ -64,7 +64,7 @@ function PrincipalPagina({path}) {
     <>
       <div className='main-container'>
         <div className='main-page-main-container'>
-          <Navbar activeLink={path} actualizaFiltros={setFiltros} nuevoObjetoRegistrado={setFlagObjetoRegistrado} />
+          <Navbar activeLink={path} actualizaFiltros={setFiltros} nuevoObjetoRegistrado={setFlagObjetoRegistrado} userId={userId} />
           <Titulo titulo={titulo} />
           {
             path === '/rastreo'

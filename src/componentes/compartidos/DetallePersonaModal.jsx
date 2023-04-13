@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './DetallePersonaModal.css'
 
+
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
