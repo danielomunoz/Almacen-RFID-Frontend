@@ -8,6 +8,7 @@ import Grid from '../compartidos/Grid';
 import Footer from '../compartidos/Footer';
 import Rastreo from '../compartidos/Rastreo';
 import Paginacion from '../compartidos/Paginacion';
+import ContenidoNotFound from '../compartidos/ContenidoNotFound';
 
 
 function PrincipalPagina({path, userId}) {
@@ -19,8 +20,10 @@ function PrincipalPagina({path, userId}) {
   const [paginaActual, setPaginaActual] = useState(1);
   const [totalPaginas, setTotalPaginas] = useState(1);
   const [flagObjetoRegistrado, setFlagObjetoRegistrado] = useState(false);
+  const [muestra404, setMuestra404] = useState(false);
 
   useEffect(() => {
+    setMuestra404(false);
     if (flagObjetoRegistrado === true) setFlagObjetoRegistrado(false);
     if (path === '/objetos') {
       setTitulo('Objetos');
@@ -28,10 +31,12 @@ function PrincipalPagina({path, userId}) {
       .then(res => {
         setTotalPaginas(res.data.total_paginas)
         setObjetos(res.data.payload);
+        if (res.data.total_objetos === 0) setMuestra404(true);   
       })
       .catch((err) => {
         console.log(err);
         setObjetos([]);
+        setMuestra404(true);
       });
     }
     if (path === '/rastreo') {
@@ -40,10 +45,12 @@ function PrincipalPagina({path, userId}) {
       .then(res => {
         setTotalPaginas(res.data.total_paginas)
         setAcciones(res.data.payload);
+        if (res.data.total_objetos === 0) setMuestra404(true);  
       })
       .catch((err) => {
         console.log(err);
         setAcciones([]);
+        setMuestra404(true);
       });
     }
     if (path === '/mis-objetos') {
@@ -52,10 +59,12 @@ function PrincipalPagina({path, userId}) {
       .then(res => {
         setTotalPaginas(res.data.total_paginas)
         setObjetos(res.data.payload);
+        if (res.data.total_objetos === 0) setMuestra404(true);  
       })
       .catch((err) => {
         console.log(err);
         setObjetos([]);
+        setMuestra404(true);
       });
     }
   }, [filtros, paginaActual, flagObjetoRegistrado]);
@@ -72,6 +81,9 @@ function PrincipalPagina({path, userId}) {
                 <Rastreo acciones={acciones} />
               :
                 <Grid objetos={objetos} />
+          }
+          {
+            (muestra404) && <ContenidoNotFound />
           }
         </div>
         <div className='main-page-footer-container'>
