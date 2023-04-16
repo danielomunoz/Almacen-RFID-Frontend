@@ -42,11 +42,11 @@ function Navbar({activeLink, actualizaFiltros, nuevoObjetoRegistrado, userId}) {
                         <a className="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Mi perfil
                         </a>
-                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a className="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#miPerfilModal">Información</a></li>
-                        <li><hr className="dropdown-divider" /></li>
-                        <li><a className="dropdown-item" href="/mis-objetos">Mis objetos</a></li>
-                    </ul>
+                        <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a className="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#miPerfilModal">Información</a></li>
+                            <li><hr className="dropdown-divider" /></li>
+                            <li><a className="dropdown-item" href="/mis-objetos">Mis objetos</a></li>
+                        </ul>
                     </li>
                     <li className="nav-item display-on-small-devices">
                         <a className="nav-link" href="" data-bs-toggle="modal" data-bs-target="#filtrosModal">Filtrar</a>

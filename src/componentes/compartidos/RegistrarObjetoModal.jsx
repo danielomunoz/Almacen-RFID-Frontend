@@ -86,8 +86,7 @@ function RegistrarObjetoModal({nuevoObjetoRegistrado}) {
             <div className="modal-body">
                 <form ref={formRef}>
                     <div className='avatar mb-3'>
-                        <img src="..." alt="Mi imagen" className="img-thumbnail" />
-                        <button type="button" className="btn btn-outline-warning">Cambiar imagen</button>
+                        <input className="form-control" type="file" id="formFile" />
                     </div>
                     <div className='mb-3'>
                         <label htmlFor="exampleFormControlInput1" className="form-label">Nombre</label>

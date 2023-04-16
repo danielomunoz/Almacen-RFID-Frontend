@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import './MiPerfilModal.css'
 
+import Imagen404 from '../../assets/imagen404.png'
+
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -24,8 +26,8 @@ function MiPerfilModal({user}) {
             </div>
             <div className="modal-body">
                 <div className='avatar mb-3'>
-                    <img src="..." alt="Mi imagen" className="img-thumbnail" />
-                    <button type="button" className="btn btn-outline-warning">Cambiar imagen</button>
+                    <img src={(user.imagen != null) ? `http://127.0.0.1:8000${user.imagen}` : Imagen404} alt="Mi imagen" className="img-thumbnail" />
+                    <input className="form-control" type="file" id="formFile" />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Nombre</label>

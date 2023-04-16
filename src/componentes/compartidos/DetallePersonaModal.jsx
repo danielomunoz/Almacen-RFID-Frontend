@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import './DetallePersonaModal.css'
 
+import Imagen404 from '../../assets/imagen404.png'
+
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -24,7 +26,7 @@ function DetallePersonaModal({persona}) {
             </div>
             <div className="modal-body">
                 <div className='avatar mb-3'>
-                    <img src="..." alt="Mi imagen" className="img-thumbnail" />
+                    <img src={(persona.imagen != null) ? persona.imagen : Imagen404} alt="Mi imagen" className="img-thumbnail" />
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="exampleFormControlInput1" className="form-label">Nombre</label>
