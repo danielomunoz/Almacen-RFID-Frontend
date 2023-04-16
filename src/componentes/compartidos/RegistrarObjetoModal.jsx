@@ -15,12 +15,18 @@ function RegistrarObjetoModal({nuevoObjetoRegistrado}) {
     const localizacion = useRef(null);
     const codigo_rfid = useRef(null);
     const estado_objeto = useRef(null);
+    const imagen = useRef(null);
 
     const formRef = useRef(null);
     
     const boton_cerrar = useRef(null);
 
     const registraObjeto = () => {
+
+        if (imagen.current.files.length === 0){
+            alert('Es necesario subir una imagen para el objeto');
+            return;
+        }
 
         if (nombre.current.value === '') {
             alert('El nombre no puede ser un valor en blanco');
@@ -53,11 +59,16 @@ function RegistrarObjetoModal({nuevoObjetoRegistrado}) {
             propietario: propietario.current.value,
             localizacion: localizacion.current.value,
             codigo_rfid: codigo_rfid.current.value,
+            imagen: imagen.current.files[0],
         };
 
         (estado_objeto.current.value != "0") ? body.estado_objeto = estado_objeto.current.value : null;
 
-        axios.post("http://127.0.0.1:8000/api/objeto", body, {})
+        axios.post("http://127.0.0.1:8000/api/objeto", body, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
             .then(res => {
                 console.log(res);
                 if (res.data.ok){
@@ -86,7 +97,7 @@ function RegistrarObjetoModal({nuevoObjetoRegistrado}) {
             <div className="modal-body">
                 <form ref={formRef}>
                     <div className='avatar mb-3'>
-                        <input className="form-control" type="file" id="formFile" />
+                        <input className="form-control" type="file" name="imagen" accept="image/jpeg,image/png,image/jpg,image/gif" ref={imagen} />
                     </div>
                     <div className='mb-3'>
                         <label htmlFor="exampleFormControlInput1" className="form-label">Nombre</label>
